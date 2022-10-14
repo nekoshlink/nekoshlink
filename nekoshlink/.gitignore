@@ -1,0 +1,13 @@
+.gradle
+.idea
+*/build
+build
+/data/*/
+oidc.token
+logs
+/certs/*.crt
+/certs/*.csr
+/certs/*.key
+/certs/*.p12
+/certs/*.srl
+/certs/*.jks

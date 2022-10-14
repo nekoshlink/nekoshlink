@@ -1,0 +1,41 @@
+// CLI Sample Interactions
+
+// assemble command line first!
+
+const pwd = "d#Ya%Nsek";
+
+nkshAuth.withUsernamePassword("nekoadm", pwd)
+
+nkshlink("domains list");
+nkshlink("domains create https://nksf.link");
+nkshlink("domains delete https://nksf.link");
+nkshlink("domains create --scheme https nksf.link");
+nkshlink("domains create --scheme https ednk.link");
+nkshlink("domains list");
+nkshlink("domains edit --scheme http ednk.link");
+nkshlink("domains default ednk.link");
+nkshlink("domains list");
+nkshlink("domains default localhost:8443");
+
+nkshlink("short-urls create https://google.com");
+nkshlink("short-urls create https://news.google.com -s gnews");
+nkshlink("short-urls resolve gnews");
+nkshlink("short-urls qr-resolve gnews");
+nkshlink("short-urls edit -s gnews -l https://news.google.com -t google -t news -t ps");
+nkshlink("short-urls create https://google.com -s gsearch -t google");
+nkshlink("short-urls list");
+nkshlink("short-urls delete --id 1");
+nkshlink("short-urls list");
+
+nkshlink("tags list");
+nkshlink("tags rename ps pluralsight");
+nkshlink("tags describe pluralsight 'Links used in PluralSight courses'");
+nkshlink("tags create misc --desc 'A generic tag that I don't need'");
+nkshlink("tags list");
+nkshlink("tags delete misc");
+nkshlink("tags list");
+
+nkshlink("short-urls resolve gsearch");
+nkshlink("short-urls qr-resolve gsearch");
+nkshlink("tags list");
+nkshlink("visits list");

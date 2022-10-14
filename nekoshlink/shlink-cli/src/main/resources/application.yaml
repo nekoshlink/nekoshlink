@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    url: "jdbc:h2:file:./data/h2/nekoshlink.db;AUTO_SERVER=TRUE"
+  jpa:
+    hibernate:
+      ddl-auto: "update"
+  main:
+    banner-mode: off
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://auth.nekosoft.org/realms/nekoshlink"
+
+logging:
+  pattern:
+    console: ""
+  level:
+    root: info
+    org.springframework.security: debug
+    org.nekosoft.shlink.sec: debug
+  file:
+    path: ./logs
+
+javers:
+  newObjectSnapshot: true
+
+nekoshlink:
+  security:
+    api-key: "federicomestrone"
+  initial-default-domain: "https://localhost:8443"
+  shortener:
+    hashids:
+      salt: ":shlink-secure:compileJava"

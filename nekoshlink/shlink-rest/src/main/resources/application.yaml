@@ -1,0 +1,68 @@
+spring:
+  datasource:
+    url: "jdbc:h2:file:./data/h2/nekoshlink.db;AUTO_SERVER=TRUE"
+  jpa:
+    database-platform: "org.hibernate.dialect.H2Dialect"
+    hibernate:
+      ddl-auto: "update"
+  main:
+    banner-mode: "console"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "https://auth.nekosoft.org/realms/nekoshlink"
+
+server:
+  port: 8443
+  ssl:
+    enabled: true
+    key-alias: "localhost"
+    key-password: "${PASSWORD}"
+    key-store: "certs/keystore.jks"
+    key-store-password: "${PASSWORD}"
+    client-auth: "want"
+    trust-store: "certs/truststore.jks"
+    trust-store-password: "${PASSWORD}"
+
+management:
+  server:
+    port: 8081
+    base-path: "/"
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: "/manage"
+      exposure:
+        include: "auditevents"
+  endpoint:
+    auditevents:
+      enabled: true
+
+logging:
+  level:
+    root: warn
+    org.springframework.security: warn
+    org.springframework.aop: warn
+    org.nekosoft: trace
+
+javers:
+  newObjectSnapshot: true
+
+nekoshlink:
+  initial-default-domain: "https://localhost:8443"
+#  default-baseurl-redirect: "https://shlink.nekosoft.org"
+#  default-invalid-shorturl-redirect: "https://shlink.nekosoft.org"
+#  default-http-404-redirect: "https://shlink.nekosoft.org"
+  shortener:
+    hashids:
+      salt: ":shlink-secure:compileJava"
+  security:
+    delegation:
+      anonymous-key: "nekoshlink-runas-role-key"
+    api-key:
+      passcode: "shlinkcompat"
+      role: "ROLE_API"
+      username: "nkshlink-apiuser"
+      header: "X-Api-Key"
+    userbase: NATIVE

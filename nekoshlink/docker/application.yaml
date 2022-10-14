@@ -1,0 +1,73 @@
+spring:
+  datasource:
+    url: "${NKSHLINK_JDBC_URL}"
+    username: "${NKSHLINK_JDBC_USERNAME}"
+    password: "${NKSHLINK_JDBC_PASSWORD}"
+  jpa:
+    database-platform: "${NKSHLINK_JPA_PLATFORM}"
+    hibernate:
+      ddl-auto: "update"
+  main:
+    banner-mode: "console"
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: "${NKSHLINK_OAUTH2_ISSUER}"
+
+server:
+  port: ${NKSHLINK_SERVER_PORT}
+  ssl:
+    enabled: ${NKSHLINK_SSL_ENABLED}
+    key-alias: "${NKSHLINK_SSL_KEY_ALIAS}"
+    key-password: "${NKSHLINK_SSL_KEY_PASSWORD}"
+    key-store: "${NKSHLINK_SSL_KEYSTORE}"
+    key-store-password: "${NKSHLINK_SSL_KEYSTORE_PASSWORD}"
+    client-auth: "want"
+    trust-store: "${NKSHLINK_SSL_TRUSTSTORE}"
+    trust-store-password: "${NKSHLINK_SSL_TRUSTSTORE_PASSWORD}"
+
+management:
+  server:
+    port: ${NKSHLINK_AUDIT_PORT}
+    base-path: "/"
+  endpoints:
+    enabled-by-default: false
+    web:
+      base-path: "${NKSHLINK_AUDIT_PATH}"
+      exposure:
+        include: "auditevents"
+  endpoint:
+    auditevents:
+      enabled: true
+
+logging:
+  level:
+    root: "warn"
+    org.nekosoft: "${NKSHLINK_CFG_LOGLEVEL}"
+    org.springframework.security: "info"
+
+javers:
+  newObjectSnapshot: true
+
+nekoshlink:
+  initial-default-domain: "${NKSHLINK_CFG_DOMAIN}"
+  default-baseurl-redirect: "${NKSHLINK_CFG_BASE_URL}"
+  default-request-error-redirect: "${NKSHLINK_CFG_REQ_ERR}"
+  default-password-form-redirect: "${NKSHLINK_CFG_PWD_FORM}"
+  shortener:
+    hashids:
+      salt: "${NKSHLINK_CFG_HASHSALT}"
+  security:
+    userbase: "${NKSHLINK_CFG_USERBASE}"
+    delegation:
+      anonymous-key: "nekoshlink-runas-role-key"
+    api-key:
+      passcode: "${NKSHLINK_CFG_APIKEY}"
+      role: "ROLE_API"
+      username: "nekoshlink-api"
+      header: "X-Api-Key"
+  visitlocation:
+    maxmind:
+      dbpath: "${NKSHLINK_MAXMIND_PATH}"
+      key: "${NKSHLINK_MAXMIND_KEY}"
