@@ -3,11 +3,14 @@
 You can create your own certificates with the commands
 described in this document.
 
-You can also run the commands in the script
+You can also run the commands in the following scripts in a Linux 
+machine in order to carry out the processes described below:
 
-`create-server-certs.sh`
+[`create-server-certs.sh`](https://github.com/nekoshlink/nekoshlink/blob/main/nekoshlink/certs/create-server-certs.sh)
 
-in a Linux machine.
+[`create-client-certs.sh`](https://github.com/nekoshlink/nekoshlink/blob/main/nekoshlink/certs/create-client-certs.sh)
+
+[`create-nekoadm-cert.sh`](https://github.com/nekoshlink/nekoshlink/blob/main/nekoshlink/certs/create-nekoadm-cert.sh)
 
 Create the CA certificate
 ---
